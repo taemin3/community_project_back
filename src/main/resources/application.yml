@@ -1,0 +1,28 @@
+# database 연동 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    각자 PC에 만들어놓은 Database이름을 써야 합니다. 
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8 # Database이름 ?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
+    username: root
+    password: dkstks324 # 자신의 mysql 비밀번호
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+#        show_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+    org.hibernate.orm.jdbc.bind: trace
+
+
+
