@@ -1,5 +1,10 @@
 # database 연동 설정
 spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #    각자 PC에 만들어놓은 Database이름을 써야 합니다. 
@@ -10,7 +15,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
 #        show_sql: true
@@ -23,6 +28,11 @@ logging:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
     org.hibernate.orm.jdbc.bind: trace
+server:
+  tomcat:
+    uri-encoding: UTF-8
+
+
 
 
 
