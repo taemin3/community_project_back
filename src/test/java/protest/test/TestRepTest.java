@@ -10,22 +10,6 @@ import protest.test.entity.Post;
 @SpringBootTest
 class TestRepTest {
 
-    @Autowired TestRep testRep;
 
-    @Test
-    @Transactional
-    @Rollback(false)
-    public void test() throws Exception {
-        //given
-        Post post = new Post();
-        post.setContent("asdsad");
-        post.setTitle("");
-        testRep.save(post);
-
-
-        //when
-
-        //then
-    }
 
 }
