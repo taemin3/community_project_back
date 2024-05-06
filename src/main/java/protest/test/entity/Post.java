@@ -1,4 +1,4 @@
-package protest.test.domain;
+package protest.test.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,6 +29,9 @@ public class Post {
     private int viewCount;
     @ColumnDefault("0")
     private int goodCount;
+    @ColumnDefault("0")
+    private int commentCount;
+
 
     @ManyToOne
     @JoinColumn(name = "member_id")

@@ -4,14 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import protest.test.dto.PostDto;
-import protest.test.domain.Board;
-import protest.test.domain.Member;
-import protest.test.domain.Post;
+import protest.test.entity.Board;
+import protest.test.entity.Member;
+import protest.test.entity.Post;
 import protest.test.repository.BoardRepository;
 import protest.test.repository.MemberRepository;
 import protest.test.repository.PostRepository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,8 @@ public class PostService {
     @Transactional
     public Long create(PostDto postDto) {
         Post post = new Post();
-        Board board = boardRepository.findByBoardName(postDto.getBoardName());
+        Optional<Board> optionalBoard = boardRepository.findById(postDto.getBoardId());
+        Board board = optionalBoard.orElse(new Board());
         Member member = memberRepository.findByLoginId(postDto.getMemberId());
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
