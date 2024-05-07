@@ -35,14 +35,14 @@ public class ApiController {
     private final MemberRepository memberRepository;
 
     @ResponseBody
-    @PostMapping("/api")
-    public String asdasd(@RequestBody PostDto postDto) throws IOException {
+    @PostMapping("/api/post")
+    public String postCreate(@RequestBody PostDto postDto) throws IOException {
         postService.create(postDto);
         return "ok";
     }
 
 
-    @GetMapping("/posts")
+    @GetMapping("/api/post")
     public List<PostListDto> posts(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "pageSize", defaultValue = "0") int pageSize,
@@ -57,16 +57,16 @@ public class ApiController {
         return postListDtos;
     }
 
-    @GetMapping("/board")
-    public List<BoardDto> boards(@RequestParam("memberId") String memberId) {
-        Member member = memberRepository.findByLoginId(memberId);
+    @GetMapping("/api/board")
+    public List<BoardDto> boards(@RequestParam("memberId") Long memberId) {
+        Member member = memberRepository.findById(memberId).orElse(null);
         return boardService.create(member);
     }
 
-    @PostMapping("/favorite")
+    @PostMapping("/api/board/favorite")
     public String favorite(@RequestBody FavoriteDto favoriteDto) {
         Board board = boardRepository.findByBoardName(favoriteDto.getBoardName());
-        Member member = memberRepository.findByLoginId(favoriteDto.getMemberId());
+        Member member = memberRepository.findById(favoriteDto.getMemberId()).orElse(null);
         favoriteService.add(member,board);
         return "ok";
     }

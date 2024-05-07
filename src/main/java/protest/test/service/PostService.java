@@ -27,7 +27,7 @@ public class PostService {
         Post post = new Post();
         Optional<Board> optionalBoard = boardRepository.findById(postDto.getBoardId());
         Board board = optionalBoard.orElse(new Board());
-        Member member = memberRepository.findByLoginId(postDto.getMemberId());
+        Member member = memberRepository.findById(postDto.getMemberId()).orElse(null);
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         post.setPostDate(LocalDateTime.now());

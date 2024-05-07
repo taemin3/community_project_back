@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FavoriteDto {
 
-    private String memberId;
+    private Long memberId;
     private String boardName;
 
 }
